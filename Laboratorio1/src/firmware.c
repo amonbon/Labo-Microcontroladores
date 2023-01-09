@@ -1,5 +1,5 @@
 #include <pic14/pic12f675.h>
- 
+
 //To compile:
 //sdcc -mpic14 -p16f675 blink.c
  
@@ -28,17 +28,25 @@ void main(void)
 
     TRISIO = 0b00000000; //Poner todos los pines como salidas
 	GPIO = 0x00; //Poner pines en bajo
+	
  
-    unsigned int time = 100;
+    unsigned int time = 500;
  
     //Loop forever
     while ( 1 )
     {
-			GP0 = 0x00;
-			delay(time);
+		if(!GP3){
+		}
 
-			GP0 = ~GP0;
+		else{
+			GP2 = 1;
 			delay(time);
+			GP2 = 0;
+		}
+			
+			
+			
+			
     }
  
 }
