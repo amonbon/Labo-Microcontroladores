@@ -35,18 +35,16 @@ void main(void)
     //Loop forever
     while ( 1 )
     {
-		if(!GP3){
-		}
-
-		else{
+		if(GP3){
 			GP2 = 1;
 			delay(time);
 			GP2 = 0;
 		}
+
+		else{
 			
-			
-			
-			
+		}
+				
     }
  
 }

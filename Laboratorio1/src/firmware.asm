@@ -114,25 +114,25 @@ _main:
 ;	.line	30; "firmware.c"	GPIO = 0x00; //Poner pines en bajo
 	BANKSEL	_GPIO
 	CLRF	_GPIO
-_00109_DS_:
-;	.line	38; "firmware.c"	if(!GP3){
+_00108_DS_:
+;	.line	38; "firmware.c"	if(GP3){
 	BANKSEL	_GPIObits
 	BTFSS	_GPIObits,3
-	GOTO	_00109_DS_
-;	.line	42; "firmware.c"	GP2 = 1;
+	GOTO	_00108_DS_
+;	.line	39; "firmware.c"	GP2 = 1;
 	BSF	_GPIObits,2
-;	.line	43; "firmware.c"	delay(time);
+;	.line	40; "firmware.c"	delay(time);
 	MOVLW	0xf4
 	MOVWF	STK00
 	MOVLW	0x01
 	PAGESEL	_delay
 	CALL	_delay
 	PAGESEL	$
-;	.line	44; "firmware.c"	GP2 = 0;
+;	.line	41; "firmware.c"	GP2 = 0;
 	BANKSEL	_GPIObits
 	BCF	_GPIObits,2
-	GOTO	_00109_DS_
-;	.line	52; "firmware.c"	}
+	GOTO	_00108_DS_
+;	.line	50; "firmware.c"	}
 	RETURN	
 ; exit point of _main
 
@@ -154,30 +154,30 @@ _00109_DS_:
 S_firmware__delay	code
 _delay:
 ; 2 exit points
-;	.line	54; "firmware.c"	void delay(unsigned int tiempo)
+;	.line	52; "firmware.c"	void delay(unsigned int tiempo)
 	MOVWF	r0x1000
 	MOVF	STK00,W
 	MOVWF	r0x1001
-;	.line	59; "firmware.c"	for(i=0;i<tiempo;i++)
+;	.line	57; "firmware.c"	for(i=0;i<tiempo;i++)
 	CLRF	r0x1002
 	CLRF	r0x1003
-_00120_DS_:
+_00119_DS_:
 	MOVF	r0x1000,W
 	SUBWF	r0x1003,W
 	BTFSS	STATUS,2
-	GOTO	_00141_DS_
+	GOTO	_00140_DS_
 	MOVF	r0x1001,W
 	SUBWF	r0x1002,W
-_00141_DS_:
+_00140_DS_:
 	BTFSC	STATUS,0
-	GOTO	_00122_DS_
+	GOTO	_00121_DS_
 ;;genSkipc:3307: created from rifx:00000000047A5780
-;	.line	60; "firmware.c"	for(j=0;j<1275;j++);
+;	.line	58; "firmware.c"	for(j=0;j<1275;j++);
 	MOVLW	0xfb
 	MOVWF	r0x1004
 	MOVLW	0x04
 	MOVWF	r0x1005
-_00118_DS_:
+_00117_DS_:
 	MOVLW	0xff
 	ADDWF	r0x1004,W
 	MOVWF	r0x1006
@@ -194,14 +194,14 @@ _00118_DS_:
 	MOVF	r0x1007,W
 	IORWF	r0x1006,W
 	BTFSS	STATUS,2
-	GOTO	_00118_DS_
-;	.line	59; "firmware.c"	for(i=0;i<tiempo;i++)
+	GOTO	_00117_DS_
+;	.line	57; "firmware.c"	for(i=0;i<tiempo;i++)
 	INCF	r0x1002,F
 	BTFSC	STATUS,2
 	INCF	r0x1003,F
-	GOTO	_00120_DS_
-_00122_DS_:
-;	.line	61; "firmware.c"	}
+	GOTO	_00119_DS_
+_00121_DS_:
+;	.line	59; "firmware.c"	}
 	RETURN	
 ; exit point of _delay
 
