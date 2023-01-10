@@ -74,7 +74,7 @@ void main(void)
 					break;
 
 				case 6:
-					GPIO = 0b00010111;
+					GPIO = 0b00010110;
 					delay(time);
 					GPIO = 0b00000000;
 					break;

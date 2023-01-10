@@ -1,6 +1,6 @@
 gplink-1.5.0 #1285 (Sep 12 2016)
 Copyright (c) 1998-2016 gputils project
-Listing File Generated: 1-9-2023  23:29:06
+Listing File Generated: 1-9-2023  23:32:32
 
 
 Address  Value    Disassembly              Source
@@ -321,8 +321,8 @@ Address  Value    Disassembly              Source
                                            ;	.line	74; "firmware.c"	break;
 000107   2911     goto    0x0111           	GOTO	_00113_DS_
                                            _00110_DS_:
-                                           ;	.line	77; "firmware.c"	GPIO = 0b00010111;
-000108   3017     movlw   0x17             	MOVLW	0x17
+                                           ;	.line	77; "firmware.c"	GPIO = 0b00010110;
+000108   3016     movlw   0x16             	MOVLW	0x16
 000109   1283     bcf     0x03, 0x5        	BANKSEL	_GPIO
 00010a   0085     movwf   0x05             	MOVWF	_GPIO
                                            ;	.line	78; "firmware.c"	delay(time);

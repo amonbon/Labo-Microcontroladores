@@ -304,8 +304,8 @@ _00109_DS_:
 ;	.line	74; "firmware.c"	break;
 	GOTO	_00113_DS_
 _00110_DS_:
-;	.line	77; "firmware.c"	GPIO = 0b00010111;
-	MOVLW	0x17
+;	.line	77; "firmware.c"	GPIO = 0b00010110;
+	MOVLW	0x16
 	BANKSEL	_GPIO
 	MOVWF	_GPIO
 ;	.line	78; "firmware.c"	delay(time);
