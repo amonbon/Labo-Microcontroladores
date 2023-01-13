@@ -1,0 +1,538 @@
+gplink-1.5.0 #1285 (Sep 12 2016)
+Copyright (c) 1998-2016 gputils project
+Listing File Generated: 1-12-2023  17:26:11
+
+
+Address  Value    Disassembly              Source
+-------  -----    -----------              ------
+                                           ;--------------------------------------------------------
+                                           ; File Created by SDCC : free open source ANSI-C Compiler
+                                           ; Version 4.0.0 #11528 (MINGW64)
+                                           ;--------------------------------------------------------
+                                           ; PIC port for the 14-bit core
+                                           ;--------------------------------------------------------
+                                           ;	.file	"firmware.c"
+                                           	list	p=12f675
+                                           	radix dec
+                                           	include "p12f675.inc"
+                                                   LIST
+
+                                           ;==========================================================================
+                                           ; Build date : Oct 21 2015
+                                           ;  MPASM PIC12F675 processor include
+                                           ; 
+                                           ;  (c) Copyright 1999-2015 Microchip Technology, All rights reserved
+                                           ;==========================================================================
+
+                                                   NOLIST
+                                           ;--------------------------------------------------------
+                                           ; external declarations
+                                           ;--------------------------------------------------------
+                                           	extern	__modsint
+                                           	extern	_TRISIO
+                                           	extern	_GPIO
+                                           	extern	_GPIObits
+                                           	extern	__sdcc_gsinit_startup
+                                           ;--------------------------------------------------------
+                                           ; global declarations
+                                           ;--------------------------------------------------------
+                                           	global	_main
+                                           	global	_delay
+                                           	global	_randomNum
+                                           	global	_randomRange
+
+                                           	global PSAVE
+                                           	global SSAVE
+                                           	global WSAVE
+                                           	global STK12
+                                           	global STK11
+                                           	global STK10
+                                           	global STK09
+                                           	global STK08
+                                           	global STK07
+                                           	global STK06
+                                           	global STK05
+                                           	global STK04
+                                           	global STK03
+                                           	global STK02
+                                           	global STK01
+                                           	global STK00
+
+                                           sharebank udata_ovr 0x0020
+                                           PSAVE	res 1
+                                           SSAVE	res 1
+                                           WSAVE	res 1
+                                           STK12	res 1
+                                           STK11	res 1
+                                           STK10	res 1
+                                           STK09	res 1
+                                           STK08	res 1
+                                           STK07	res 1
+                                           STK06	res 1
+                                           STK05	res 1
+                                           STK04	res 1
+                                           STK03	res 1
+                                           STK02	res 1
+                                           STK01	res 1
+                                           STK00	res 1
+
+                                           ;--------------------------------------------------------
+                                           ; global definitions
+                                           ;--------------------------------------------------------
+                                           ;--------------------------------------------------------
+                                           ; absolute symbol definitions
+                                           ;--------------------------------------------------------
+                                           ;--------------------------------------------------------
+                                           ; compiler-defined variables
+                                           ;--------------------------------------------------------
+                                           UDL_firmware_0	udata
+                                           r0x100F	res	1
+                                           r0x100E	res	1
+                                           r0x1010	res	1
+                                           r0x1007	res	1
+                                           r0x1006	res	1
+                                           r0x1008	res	1
+                                           r0x1009	res	1
+                                           r0x100A	res	1
+                                           r0x100B	res	1
+                                           r0x100C	res	1
+                                           r0x100D	res	1
+                                           r0x1001	res	1
+                                           r0x1000	res	1
+                                           r0x1003	res	1
+                                           r0x1002	res	1
+                                           r0x1005	res	1
+                                           r0x1004	res	1
+                                           ;--------------------------------------------------------
+                                           ; initialized data
+                                           ;--------------------------------------------------------
+                                           ;--------------------------------------------------------
+                                           ; initialized absolute data
+                                           ;--------------------------------------------------------
+                                           ;--------------------------------------------------------
+                                           ; overlayable items in internal ram 
+                                           ;--------------------------------------------------------
+                                           ;	udata_ovr
+                                           ;--------------------------------------------------------
+                                           ; reset vector 
+                                           ;--------------------------------------------------------
+                                           STARTUP	code 0x0000
+000000   0000     nop                      	nop
+                                           	pagesel __sdcc_gsinit_startup
+000001   2802     goto    0x0002           	goto	__sdcc_gsinit_startup
+                                           ;--------------------------------------------------------
+                                           ; code
+                                           ;--------------------------------------------------------
+                                           code_firmware	code
+                                           ;***
+                                           ;  pBlock Stats: dbName = M
+                                           ;***
+                                           ;has an exit
+                                           ;functions called:
+                                           ;   _randomNum
+                                           ;   _randomRange
+                                           ;   _delay
+                                           ;   _delay
+                                           ;   _delay
+                                           ;   _delay
+                                           ;   _delay
+                                           ;   _delay
+                                           ;   _delay
+                                           ;   _randomRange
+                                           ;   _randomNum
+                                           ;   _randomRange
+                                           ;   _delay
+                                           ;   _delay
+                                           ;   _delay
+                                           ;   _delay
+                                           ;   _delay
+                                           ;   _delay
+                                           ;   _delay
+                                           ;   _randomRange
+                                           ;8 compiler assigned registers:
+                                           ;   r0x100E
+                                           ;   STK00
+                                           ;   r0x100F
+                                           ;   STK04
+                                           ;   STK03
+                                           ;   STK02
+                                           ;   STK01
+                                           ;   r0x1010
+                                           ;; Starting pCode block
+                                           S_firmware__main	code
+                                           _main:
+                                           ; 2 exit points
+                                           ;	.line	31; "firmware.c"	TRISIO = 0b00000000; //Poner todos los pines como salidas
+00009e   1683     bsf     0x03, 0x5        	BANKSEL	_TRISIO
+00009f   0185     clrf    0x05             	CLRF	_TRISIO
+                                           ;	.line	32; "firmware.c"	GPIO = 0x00; //Poner pines en bajo
+0000a0   1283     bcf     0x03, 0x5        	BANKSEL	_GPIO
+0000a1   0185     clrf    0x05             	CLRF	_GPIO
+                                           ;	.line	34; "firmware.c"	int lower = 1, upper = 6, aleatorio = randomNum();
+                                           	PAGESEL	_randomNum
+0000a2   2264     call    0x0264           	CALL	_randomNum
+                                           	PAGESEL	$
+0000a3   00b1     movwf   0x31             	MOVWF	r0x100E
+0000a4   082f     movf    0x2f, 0x0        	MOVF	STK00,W
+                                           ;	.line	36; "firmware.c"	aleatorio = randomRange(lower, upper, aleatorio);
+0000a5   00b0     movwf   0x30             	MOVWF	r0x100F
+0000a6   00ab     movwf   0x2b             	MOVWF	STK04
+0000a7   0831     movf    0x31, 0x0        	MOVF	r0x100E,W
+0000a8   00ac     movwf   0x2c             	MOVWF	STK03
+0000a9   3006     movlw   0x06             	MOVLW	0x06
+0000aa   00ad     movwf   0x2d             	MOVWF	STK02
+0000ab   3000     movlw   0x00             	MOVLW	0x00
+0000ac   00ae     movwf   0x2e             	MOVWF	STK01
+0000ad   3001     movlw   0x01             	MOVLW	0x01
+0000ae   00af     movwf   0x2f             	MOVWF	STK00
+0000af   3000     movlw   0x00             	MOVLW	0x00
+                                           	PAGESEL	_randomRange
+0000b0   220b     call    0x020b           	CALL	_randomRange
+                                           	PAGESEL	$
+0000b1   00b1     movwf   0x31             	MOVWF	r0x100E
+0000b2   082f     movf    0x2f, 0x0        	MOVF	STK00,W
+0000b3   00b0     movwf   0x30             	MOVWF	r0x100F
+                                           _00117_DS_:
+                                           ;	.line	41; "firmware.c"	if(GP3)
+0000b4   1283     bcf     0x03, 0x5        	BANKSEL	_GPIObits
+0000b5   1d85     btfss   0x05, 0x3        	BTFSS	_GPIObits,3
+0000b6   2918     goto    0x0118           	GOTO	_00115_DS_
+                                           ;	.line	43; "firmware.c"	delay(bounce_timer);
+0000b7   300a     movlw   0x0a             	MOVLW	0x0a
+0000b8   00af     movwf   0x2f             	MOVWF	STK00
+0000b9   3000     movlw   0x00             	MOVLW	0x00
+                                           	PAGESEL	_delay
+0000ba   2235     call    0x0235           	CALL	_delay
+                                           	PAGESEL	$
+                                           ;	.line	44; "firmware.c"	if(GP3)
+0000bb   1283     bcf     0x03, 0x5        	BANKSEL	_GPIObits
+0000bc   1d85     btfss   0x05, 0x3        	BTFSS	_GPIObits,3
+0000bd   2918     goto    0x0118           	GOTO	_00115_DS_
+                                           ;;signed compare: left < lit(0x1=1), size=2, mask=ffff
+                                           ;	.line	46; "firmware.c"	switch (aleatorio)
+0000be   0831     movf    0x31, 0x0        	MOVF	r0x100E,W
+0000bf   3e80     addlw   0x80             	ADDLW	0x80
+0000c0   3e80     addlw   0x80             	ADDLW	0x80
+0000c1   1d03     btfss   0x03, 0x2        	BTFSS	STATUS,2
+0000c2   28c5     goto    0x00c5           	GOTO	_00146_DS_
+0000c3   3001     movlw   0x01             	MOVLW	0x01
+0000c4   0230     subwf   0x30, 0x0        	SUBWF	r0x100F,W
+                                           _00146_DS_:
+0000c5   1c03     btfss   0x03, 0x0        	BTFSS	STATUS,0
+0000c6   2918     goto    0x0118           	GOTO	_00115_DS_
+                                           ;;genSkipc:3307: created from rifx:00000000047A5780
+                                           ;;swapping arguments (AOP_TYPEs 1/2)
+                                           ;;signed compare: left >= lit(0x7=7), size=2, mask=ffff
+0000c7   0831     movf    0x31, 0x0        	MOVF	r0x100E,W
+0000c8   3e80     addlw   0x80             	ADDLW	0x80
+0000c9   3e80     addlw   0x80             	ADDLW	0x80
+0000ca   1d03     btfss   0x03, 0x2        	BTFSS	STATUS,2
+0000cb   28ce     goto    0x00ce           	GOTO	_00147_DS_
+0000cc   3007     movlw   0x07             	MOVLW	0x07
+0000cd   0230     subwf   0x30, 0x0        	SUBWF	r0x100F,W
+                                           _00147_DS_:
+0000ce   1803     btfsc   0x03, 0x0        	BTFSC	STATUS,0
+0000cf   2918     goto    0x0118           	GOTO	_00115_DS_
+                                           ;;genSkipc:3307: created from rifx:00000000047A5780
+0000d0   0330     decf    0x30, 0x0        	DECF	r0x100F,W
+0000d1   00b2     movwf   0x32             	MOVWF	r0x1010
+0000d2   3000     movlw   0x00             	MOVLW	HIGH(_00148_DS_)
+0000d3   008a     movwf   0x0a             	MOVWF	PCLATH
+0000d4   30d9     movlw   0xd9             	MOVLW	_00148_DS_
+0000d5   0732     addwf   0x32, 0x0        	ADDWF	r0x1010,W
+0000d6   1803     btfsc   0x03, 0x0        	BTFSC	STATUS,0
+0000d7   0a8a     incf    0x0a, 0x1        	INCF	PCLATH,F
+0000d8   0082     movwf   0x02             	MOVWF	PCL
+                                           _00148_DS_:
+0000d9   28df     goto    0x00df           	GOTO	_00105_DS_
+0000da   28e8     goto    0x00e8           	GOTO	_00106_DS_
+0000db   28f1     goto    0x00f1           	GOTO	_00107_DS_
+0000dc   28fb     goto    0x00fb           	GOTO	_00108_DS_
+0000dd   2905     goto    0x0105           	GOTO	_00109_DS_
+0000de   290f     goto    0x010f           	GOTO	_00110_DS_
+                                           _00105_DS_:
+                                           ;	.line	49; "firmware.c"	GP0 = 1;
+0000df   1283     bcf     0x03, 0x5        	BANKSEL	_GPIObits
+0000e0   1405     bsf     0x05, 0x0        	BSF	_GPIObits,0
+                                           ;	.line	50; "firmware.c"	delay(time);
+0000e1   30f4     movlw   0xf4             	MOVLW	0xf4
+0000e2   00af     movwf   0x2f             	MOVWF	STK00
+0000e3   3001     movlw   0x01             	MOVLW	0x01
+                                           	PAGESEL	_delay
+0000e4   2235     call    0x0235           	CALL	_delay
+                                           	PAGESEL	$
+                                           ;	.line	51; "firmware.c"	GP0 = 0;
+0000e5   1283     bcf     0x03, 0x5        	BANKSEL	_GPIObits
+0000e6   1005     bcf     0x05, 0x0        	BCF	_GPIObits,0
+                                           ;	.line	52; "firmware.c"	break;
+0000e7   2918     goto    0x0118           	GOTO	_00115_DS_
+                                           _00106_DS_:
+                                           ;	.line	55; "firmware.c"	GP1 = 1;
+0000e8   1283     bcf     0x03, 0x5        	BANKSEL	_GPIObits
+0000e9   1485     bsf     0x05, 0x1        	BSF	_GPIObits,1
+                                           ;	.line	56; "firmware.c"	delay(time);
+0000ea   30f4     movlw   0xf4             	MOVLW	0xf4
+0000eb   00af     movwf   0x2f             	MOVWF	STK00
+0000ec   3001     movlw   0x01             	MOVLW	0x01
+                                           	PAGESEL	_delay
+0000ed   2235     call    0x0235           	CALL	_delay
+                                           	PAGESEL	$
+                                           ;	.line	57; "firmware.c"	GP1 = 0;
+0000ee   1283     bcf     0x03, 0x5        	BANKSEL	_GPIObits
+0000ef   1085     bcf     0x05, 0x1        	BCF	_GPIObits,1
+                                           ;	.line	58; "firmware.c"	break;
+0000f0   2918     goto    0x0118           	GOTO	_00115_DS_
+                                           _00107_DS_:
+                                           ;	.line	61; "firmware.c"	GPIO = 0b00000011;
+0000f1   3003     movlw   0x03             	MOVLW	0x03
+0000f2   1283     bcf     0x03, 0x5        	BANKSEL	_GPIO
+0000f3   0085     movwf   0x05             	MOVWF	_GPIO
+                                           ;	.line	62; "firmware.c"	delay(time);
+0000f4   30f4     movlw   0xf4             	MOVLW	0xf4
+0000f5   00af     movwf   0x2f             	MOVWF	STK00
+0000f6   3001     movlw   0x01             	MOVLW	0x01
+                                           	PAGESEL	_delay
+0000f7   2235     call    0x0235           	CALL	_delay
+                                           	PAGESEL	$
+                                           ;	.line	63; "firmware.c"	GPIO = 0b00000000;
+0000f8   1283     bcf     0x03, 0x5        	BANKSEL	_GPIO
+0000f9   0185     clrf    0x05             	CLRF	_GPIO
+                                           ;	.line	64; "firmware.c"	break;
+0000fa   2918     goto    0x0118           	GOTO	_00115_DS_
+                                           _00108_DS_:
+                                           ;	.line	67; "firmware.c"	GPIO = 0b00000110;
+0000fb   3006     movlw   0x06             	MOVLW	0x06
+0000fc   1283     bcf     0x03, 0x5        	BANKSEL	_GPIO
+0000fd   0085     movwf   0x05             	MOVWF	_GPIO
+                                           ;	.line	68; "firmware.c"	delay(time);
+0000fe   30f4     movlw   0xf4             	MOVLW	0xf4
+0000ff   00af     movwf   0x2f             	MOVWF	STK00
+000100   3001     movlw   0x01             	MOVLW	0x01
+                                           	PAGESEL	_delay
+000101   2235     call    0x0235           	CALL	_delay
+                                           	PAGESEL	$
+                                           ;	.line	69; "firmware.c"	GPIO = 0b00000000;
+000102   1283     bcf     0x03, 0x5        	BANKSEL	_GPIO
+000103   0185     clrf    0x05             	CLRF	_GPIO
+                                           ;	.line	70; "firmware.c"	break;
+000104   2918     goto    0x0118           	GOTO	_00115_DS_
+                                           _00109_DS_:
+                                           ;	.line	73; "firmware.c"	GPIO = 0b00000111;
+000105   3007     movlw   0x07             	MOVLW	0x07
+000106   1283     bcf     0x03, 0x5        	BANKSEL	_GPIO
+000107   0085     movwf   0x05             	MOVWF	_GPIO
+                                           ;	.line	74; "firmware.c"	delay(time);
+000108   30f4     movlw   0xf4             	MOVLW	0xf4
+000109   00af     movwf   0x2f             	MOVWF	STK00
+00010a   3001     movlw   0x01             	MOVLW	0x01
+                                           	PAGESEL	_delay
+00010b   2235     call    0x0235           	CALL	_delay
+                                           	PAGESEL	$
+                                           ;	.line	75; "firmware.c"	GPIO = 0b00000000;
+00010c   1283     bcf     0x03, 0x5        	BANKSEL	_GPIO
+00010d   0185     clrf    0x05             	CLRF	_GPIO
+                                           ;	.line	76; "firmware.c"	break;
+00010e   2918     goto    0x0118           	GOTO	_00115_DS_
+                                           _00110_DS_:
+                                           ;	.line	79; "firmware.c"	GPIO = 0b00010110;
+00010f   3016     movlw   0x16             	MOVLW	0x16
+000110   1283     bcf     0x03, 0x5        	BANKSEL	_GPIO
+000111   0085     movwf   0x05             	MOVWF	_GPIO
+                                           ;	.line	80; "firmware.c"	delay(time);
+000112   30f4     movlw   0xf4             	MOVLW	0xf4
+000113   00af     movwf   0x2f             	MOVWF	STK00
+000114   3001     movlw   0x01             	MOVLW	0x01
+                                           	PAGESEL	_delay
+000115   2235     call    0x0235           	CALL	_delay
+                                           	PAGESEL	$
+                                           ;	.line	81; "firmware.c"	GPIO = 0b00000000;
+000116   1283     bcf     0x03, 0x5        	BANKSEL	_GPIO
+000117   0185     clrf    0x05             	CLRF	_GPIO
+                                           _00115_DS_:
+                                           ;	.line	92; "firmware.c"	aleatorio = randomRange(lower, upper, aleatorio);		
+000118   0830     movf    0x30, 0x0        	MOVF	r0x100F,W
+000119   00ab     movwf   0x2b             	MOVWF	STK04
+00011a   0831     movf    0x31, 0x0        	MOVF	r0x100E,W
+00011b   00ac     movwf   0x2c             	MOVWF	STK03
+00011c   3006     movlw   0x06             	MOVLW	0x06
+00011d   00ad     movwf   0x2d             	MOVWF	STK02
+00011e   3000     movlw   0x00             	MOVLW	0x00
+00011f   00ae     movwf   0x2e             	MOVWF	STK01
+000120   3001     movlw   0x01             	MOVLW	0x01
+000121   00af     movwf   0x2f             	MOVWF	STK00
+000122   3000     movlw   0x00             	MOVLW	0x00
+                                           	PAGESEL	_randomRange
+000123   220b     call    0x020b           	CALL	_randomRange
+                                           	PAGESEL	$
+000124   00b1     movwf   0x31             	MOVWF	r0x100E
+000125   082f     movf    0x2f, 0x0        	MOVF	STK00,W
+000126   00b0     movwf   0x30             	MOVWF	r0x100F
+000127   28b4     goto    0x00b4           	GOTO	_00117_DS_
+                                           ;	.line	95; "firmware.c"	}
+000128   0008     return                   	RETURN	
+                                           ; exit point of _main
+
+                                           ;***
+                                           ;  pBlock Stats: dbName = C
+                                           ;***
+                                           ;has an exit
+                                           ;functions called:
+                                           ;   __modsint
+                                           ;   __modsint
+                                           ;11 compiler assigned registers:
+                                           ;   r0x1000
+                                           ;   STK00
+                                           ;   r0x1001
+                                           ;   STK01
+                                           ;   r0x1002
+                                           ;   STK02
+                                           ;   r0x1003
+                                           ;   STK03
+                                           ;   r0x1004
+                                           ;   STK04
+                                           ;   r0x1005
+                                           ;; Starting pCode block
+                                           S_firmware__randomRange	code
+                                           _randomRange:
+                                           ; 2 exit points
+                                           ;	.line	114; "firmware.c"	int randomRange( int min, int max, int past_num )  
+00020b   00bc     movwf   0x3c             	MOVWF	r0x1000
+00020c   082f     movf    0x2f, 0x0        	MOVF	STK00,W
+00020d   00bb     movwf   0x3b             	MOVWF	r0x1001
+00020e   082e     movf    0x2e, 0x0        	MOVF	STK01,W
+00020f   00be     movwf   0x3e             	MOVWF	r0x1002
+000210   082d     movf    0x2d, 0x0        	MOVF	STK02,W
+000211   00bd     movwf   0x3d             	MOVWF	r0x1003
+000212   082c     movf    0x2c, 0x0        	MOVF	STK03,W
+000213   00c0     movwf   0x40             	MOVWF	r0x1004
+000214   082b     movf    0x2b, 0x0        	MOVF	STK04,W
+000215   00bf     movwf   0x3f             	MOVWF	r0x1005
+                                           ;	.line	116; "firmware.c"	return past_num % (max+1-min) + min ;  
+000216   0abd     incf    0x3d, 0x1        	INCF	r0x1003,F
+000217   1903     btfsc   0x03, 0x2        	BTFSC	STATUS,2
+000218   0abe     incf    0x3e, 0x1        	INCF	r0x1002,F
+000219   083b     movf    0x3b, 0x0        	MOVF	r0x1001,W
+00021a   02bd     subwf   0x3d, 0x1        	SUBWF	r0x1003,F
+00021b   083c     movf    0x3c, 0x0        	MOVF	r0x1000,W
+00021c   1c03     btfss   0x03, 0x0        	BTFSS	STATUS,0
+00021d   0f3c     incfsz  0x3c, 0x0        	INCFSZ	r0x1000,W
+00021e   02be     subwf   0x3e, 0x1        	SUBWF	r0x1002,F
+00021f   083d     movf    0x3d, 0x0        	MOVF	r0x1003,W
+000220   00ad     movwf   0x2d             	MOVWF	STK02
+000221   083e     movf    0x3e, 0x0        	MOVF	r0x1002,W
+000222   00ae     movwf   0x2e             	MOVWF	STK01
+000223   083f     movf    0x3f, 0x0        	MOVF	r0x1005,W
+000224   00af     movwf   0x2f             	MOVWF	STK00
+000225   0840     movf    0x40, 0x0        	MOVF	r0x1004,W
+                                           	PAGESEL	__modsint
+000226   2129     call    0x0129           	CALL	__modsint
+                                           	PAGESEL	$
+000227   00be     movwf   0x3e             	MOVWF	r0x1002
+000228   082f     movf    0x2f, 0x0        	MOVF	STK00,W
+000229   00bd     movwf   0x3d             	MOVWF	r0x1003
+00022a   083b     movf    0x3b, 0x0        	MOVF	r0x1001,W
+00022b   073d     addwf   0x3d, 0x0        	ADDWF	r0x1003,W
+00022c   00bb     movwf   0x3b             	MOVWF	r0x1001
+00022d   083e     movf    0x3e, 0x0        	MOVF	r0x1002,W
+00022e   1803     btfsc   0x03, 0x0        	BTFSC	STATUS,0
+00022f   0f3e     incfsz  0x3e, 0x0        	INCFSZ	r0x1002,W
+000230   07bc     addwf   0x3c, 0x1        	ADDWF	r0x1000,F
+000231   083b     movf    0x3b, 0x0        	MOVF	r0x1001,W
+000232   00af     movwf   0x2f             	MOVWF	STK00
+000233   083c     movf    0x3c, 0x0        	MOVF	r0x1000,W
+                                           ;	.line	117; "firmware.c"	}
+000234   0008     return                   	RETURN	
+                                           ; exit point of _randomRange
+
+                                           ;***
+                                           ;  pBlock Stats: dbName = C
+                                           ;***
+                                           ;has an exit
+                                           ;1 compiler assigned register :
+                                           ;   STK00
+                                           ;; Starting pCode block
+                                           S_firmware__randomNum	code
+                                           _randomNum:
+                                           ; 2 exit points
+                                           ;	.line	111; "firmware.c"	return next ; 
+000264   30ff     movlw   0xff             	MOVLW	0xff
+000265   00af     movwf   0x2f             	MOVWF	STK00
+000266   30fe     movlw   0xfe             	MOVLW	0xfe
+                                           ;	.line	112; "firmware.c"	} 
+000267   0008     return                   	RETURN	
+                                           ; exit point of _randomNum
+
+                                           ;***
+                                           ;  pBlock Stats: dbName = C
+                                           ;***
+                                           ;has an exit
+                                           ;9 compiler assigned registers:
+                                           ;   r0x1006
+                                           ;   STK00
+                                           ;   r0x1007
+                                           ;   r0x1008
+                                           ;   r0x1009
+                                           ;   r0x100A
+                                           ;   r0x100B
+                                           ;   r0x100C
+                                           ;   r0x100D
+                                           ;; Starting pCode block
+                                           S_firmware__delay	code
+                                           _delay:
+                                           ; 2 exit points
+                                           ;	.line	97; "firmware.c"	void delay(unsigned int tiempo)
+000235   00b4     movwf   0x34             	MOVWF	r0x1006
+000236   082f     movf    0x2f, 0x0        	MOVF	STK00,W
+000237   00b3     movwf   0x33             	MOVWF	r0x1007
+                                           ;	.line	102; "firmware.c"	for(i=0;i<tiempo;i++)
+000238   01b5     clrf    0x35             	CLRF	r0x1008
+000239   01b6     clrf    0x36             	CLRF	r0x1009
+                                           _00159_DS_:
+00023a   0834     movf    0x34, 0x0        	MOVF	r0x1006,W
+00023b   0236     subwf   0x36, 0x0        	SUBWF	r0x1009,W
+00023c   1d03     btfss   0x03, 0x2        	BTFSS	STATUS,2
+00023d   2a40     goto    0x0240           	GOTO	_00180_DS_
+00023e   0833     movf    0x33, 0x0        	MOVF	r0x1007,W
+00023f   0235     subwf   0x35, 0x0        	SUBWF	r0x1008,W
+                                           _00180_DS_:
+000240   1803     btfsc   0x03, 0x0        	BTFSC	STATUS,0
+000241   2a5b     goto    0x025b           	GOTO	_00161_DS_
+                                           ;;genSkipc:3307: created from rifx:00000000047A5780
+                                           ;	.line	103; "firmware.c"	for(j=0;j<1275;j++);
+000242   30fb     movlw   0xfb             	MOVLW	0xfb
+000243   00b7     movwf   0x37             	MOVWF	r0x100A
+000244   3004     movlw   0x04             	MOVLW	0x04
+000245   00b8     movwf   0x38             	MOVWF	r0x100B
+                                           _00157_DS_:
+000246   30ff     movlw   0xff             	MOVLW	0xff
+000247   0737     addwf   0x37, 0x0        	ADDWF	r0x100A,W
+000248   00b9     movwf   0x39             	MOVWF	r0x100C
+000249   30ff     movlw   0xff             	MOVLW	0xff
+00024a   00ba     movwf   0x3a             	MOVWF	r0x100D
+00024b   0838     movf    0x38, 0x0        	MOVF	r0x100B,W
+00024c   1803     btfsc   0x03, 0x0        	BTFSC	STATUS,0
+00024d   0f38     incfsz  0x38, 0x0        	INCFSZ	r0x100B,W
+00024e   07ba     addwf   0x3a, 0x1        	ADDWF	r0x100D,F
+00024f   0839     movf    0x39, 0x0        	MOVF	r0x100C,W
+000250   00b7     movwf   0x37             	MOVWF	r0x100A
+000251   083a     movf    0x3a, 0x0        	MOVF	r0x100D,W
+000252   00b8     movwf   0x38             	MOVWF	r0x100B
+000253   083a     movf    0x3a, 0x0        	MOVF	r0x100D,W
+000254   0439     iorwf   0x39, 0x0        	IORWF	r0x100C,W
+000255   1d03     btfss   0x03, 0x2        	BTFSS	STATUS,2
+000256   2a46     goto    0x0246           	GOTO	_00157_DS_
+                                           ;	.line	102; "firmware.c"	for(i=0;i<tiempo;i++)
+000257   0ab5     incf    0x35, 0x1        	INCF	r0x1008,F
+000258   1903     btfsc   0x03, 0x2        	BTFSC	STATUS,2
+000259   0ab6     incf    0x36, 0x1        	INCF	r0x1009,F
+00025a   2a3a     goto    0x023a           	GOTO	_00159_DS_
+                                           _00161_DS_:
+                                           ;	.line	104; "firmware.c"	}
+00025b   0008     return                   	RETURN	
+                                           ; exit point of _delay
+
+
+                                           ;	code size estimation:
+                                           ;	  208+   38 =   246 instructions (  568 byte)
+
+                                           	end
