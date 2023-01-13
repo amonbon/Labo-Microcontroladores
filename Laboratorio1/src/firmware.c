@@ -28,12 +28,11 @@ int randomRange ( int min, int max, int past_num );
 
 void main(void)
 {
-
     TRISIO = 0b00000000; //Poner todos los pines como salidas
 	GPIO = 0x00; //Poner pines en bajo
 
 	int lower = 1, upper = 6, aleatorio = randomNum();
-    unsigned int time = 500;
+    unsigned int time = 500, bounce_timer = 10;
 	aleatorio = randomRange(lower, upper, aleatorio);
  
     //Loop forever
@@ -41,8 +40,11 @@ void main(void)
     {
 		if(GP3)
 		{
-			switch (aleatorio)
+			delay(bounce_timer);
+			if(GP3)
 			{
+				switch (aleatorio)
+				{
 				case 1:
 					GP0 = 1;
 					delay(time);
@@ -78,6 +80,8 @@ void main(void)
 					delay(time);
 					GPIO = 0b00000000;
 					break;
+
+				}
 			}
 		}
 
